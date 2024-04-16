@@ -9,6 +9,7 @@ Header comments:\
 #input type 1\
 #input type 2\
 #etc.\
+#tool description\
 \
 Footer comments:\
 #number of outputs\

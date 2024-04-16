@@ -3,7 +3,10 @@
 #number of inputs 1
 #Surface Point Cloud Array
 
-
+#This tool takes a point cloud and removes data from below a threshold
+#This can be useful when using a ring or wide align tool with unwanted 
+#background data. Such data can't be masked out since no tool exists 
+#(at the moment) to do so on non-uniform data. 
 
 import numpy as np
 
@@ -15,10 +18,11 @@ offsetArr = []
 scaleArr = []
 pointsArr = []
 
+heightLimitScaled = 25 #threshold in mm
+
 for surface in surfaces:
-    #use unscaled units to save proc time
-    heightLimitScaled = 25 #mm
     
+    #use unscaled data to process arrays faster
     #formula for scaled to unscaled is (mm - offset)/res = unscaled
     zOffset = surface.offset.z
     zResolution = surface.scale.z
@@ -28,7 +32,7 @@ for surface in surfaces:
     surfPts = surface.points.copy()
     indices = np.where(surfPts[:, :, 2] < heightLimitUnscaled)
     
-    # Replace all corresponding X, Y, and Z values 
+    # Replace all corresponding X, Y, and Z values with kNULL (-32768)
     surfPts[indices] = -32768 
 
     #setup output arrays
