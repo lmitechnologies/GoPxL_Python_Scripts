@@ -1,3 +1,10 @@
+#created April 15 2024
+#written by Bobby Breyer
+#number of inputs 1
+#Surface Point Cloud Array
+
+
+
 import numpy as np
 
 if any_input_invalid():
@@ -33,4 +40,5 @@ for surface in surfaces:
 send_surface(0,offsetArr,scaleArr,pointsArr)
 
 
-    
+#number of outputs 1
+#Surface Point Cloud Array    
